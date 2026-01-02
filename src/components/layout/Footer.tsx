@@ -57,17 +57,17 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-black border-t border-white/5 pt-24 pb-12 px-6">
+        <footer className="bg-background border-t border-border/5 pt-24 pb-12 px-6">
             <div className="max-w-[1440px] mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="inline-block mb-8">
-                            <span className="text-3xl font-display font-bold tracking-tighter text-white">
+                            <span className="text-3xl font-display font-bold tracking-tighter text-foreground">
                                 SOLEEDGE<span className="text-silver">.</span>
                             </span>
                         </Link>
-                        <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-8">
+                        <p className="text-foreground/40 text-sm leading-relaxed max-w-sm mb-8">
                             Sadece bir ayakkabı değil, bir yaşam tarzı. Geleceğin teknolojisini
                             bugünün stiliyle buluşturuyoruz. Adımlarınızı bizimle güçlendirin.
                         </p>
@@ -76,7 +76,7 @@ const Footer = () => {
                                 <a
                                     key={social.name}
                                     href={social.href}
-                                    className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white transition-all duration-300"
+                                    className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/40 hover:text-foreground hover:border-foreground transition-all duration-300"
                                     aria-label={social.name}
                                 >
                                     {social.icon}
@@ -88,7 +88,7 @@ const Footer = () => {
                     {/* Links Columns */}
                     {footerLinks.map((group) => (
                         <div key={group.title}>
-                            <h4 className="text-white font-display text-sm font-semibold uppercase tracking-widest mb-8">
+                            <h4 className="text-foreground font-display text-sm font-semibold uppercase tracking-widest mb-8">
                                 {group.title}
                             </h4>
                             <ul className="flex flex-col gap-4">
@@ -96,7 +96,7 @@ const Footer = () => {
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
-                                            className="text-white/40 hover:text-white text-sm transition-colors duration-300 flex items-center group"
+                                            className="text-foreground/40 hover:text-foreground text-sm transition-colors duration-300 flex items-center group"
                                         >
                                             {link.name}
                                             <ArrowUpRight className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 ml-1" size={14} />
@@ -109,14 +109,14 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-white/20 text-[10px] uppercase tracking-[0.2em]">
+                <div className="pt-12 border-t border-border/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-foreground/20 text-[10px] uppercase tracking-[0.2em]">
                         &copy; {currentYear} SOLEEDGE Dynamics. Tüm Hakları Saklıdır.
                     </p>
                     <div className="flex gap-8">
-                        <Link href="#" className="text-white/20 hover:text-white text-[10px] uppercase tracking-[0.2em] transition-colors">KVKK</Link>
-                        <Link href="#" className="text-white/20 hover:text-white text-[10px] uppercase tracking-[0.2em] transition-colors">Çerez Politikası</Link>
-                        <Link href="#" className="text-white/20 hover:text-white text-[10px] uppercase tracking-[0.2em] transition-colors">Kullanım Koşulları</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">KVKK</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">Çerez Politikası</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">Kullanım Koşulları</Link>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ export default function SizeGuidePage() {
     ];
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <div className="pt-32 pb-24 px-6 max-w-[1000px] mx-auto">
@@ -35,7 +35,7 @@ export default function SizeGuidePage() {
                     <h1 className="text-5xl md:text-7xl font-display font-bold text-gradient mb-8">
                         {isTurkish ? "NUMARA REHBERİ" : "SIZE GUIDE"}
                     </h1>
-                    <p className="text-white/40 text-lg leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-foreground/40 text-lg leading-relaxed max-w-2xl mx-auto">
                         {isTurkish
                             ? "Doğru ayakkabı numarası, hem performans hem de uzun süreli konfor için kritiktir. Aşağıdaki tabloyu kullanarak size en uygun numarayı bulabilirsiniz."
                             : "The right shoe size is critical for both performance and long-term comfort. Use the table below to find the best fit for you."}
@@ -47,24 +47,24 @@ export default function SizeGuidePage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-16"
+                    className="bg-card border border-border/10 rounded-2xl overflow-hidden mb-16"
                 >
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="border-b border-white/10 bg-white/5">
-                                <th className="p-6 text-[10px] uppercase tracking-widest text-white/40 font-semibold text-center">EU</th>
-                                <th className="p-6 text-[10px] uppercase tracking-widest text-white/40 font-semibold text-center">CM</th>
-                                <th className="p-6 text-[10px] uppercase tracking-widest text-white/40 font-semibold text-center">US</th>
-                                <th className="p-6 text-[10px] uppercase tracking-widest text-white/40 font-semibold text-center">UK</th>
+                            <tr className="border-b border-border/10 bg-foreground/5">
+                                <th className="p-6 text-[10px] uppercase tracking-widest text-foreground/40 font-semibold text-center">EU</th>
+                                <th className="p-6 text-[10px] uppercase tracking-widest text-foreground/40 font-semibold text-center">CM</th>
+                                <th className="p-6 text-[10px] uppercase tracking-widest text-foreground/40 font-semibold text-center">US</th>
+                                <th className="p-6 text-[10px] uppercase tracking-widest text-foreground/40 font-semibold text-center">UK</th>
                             </tr>
                         </thead>
                         <tbody>
                             {sizeData.map((row, idx) => (
-                                <tr key={idx} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                                    <td className="p-6 text-white font-display font-bold text-center">{row.eu}</td>
-                                    <td className="p-6 text-white/60 text-center font-sans">{row.cm}</td>
-                                    <td className="p-6 text-white/60 text-center font-sans">{row.us}</td>
-                                    <td className="p-6 text-white/60 text-center font-sans">{row.uk}</td>
+                                <tr key={idx} className="border-b border-border/5 hover:bg-foreground/[0.01] transition-colors">
+                                    <td className="p-6 text-foreground font-display font-bold text-center">{row.eu}</td>
+                                    <td className="p-6 text-foreground/60 text-center font-sans">{row.cm}</td>
+                                    <td className="p-6 text-foreground/60 text-center font-sans">{row.us}</td>
+                                    <td className="p-6 text-foreground/60 text-center font-sans">{row.uk}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -73,12 +73,12 @@ export default function SizeGuidePage() {
 
                 {/* Tips Section */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-2xl">
+                    <div className="p-8 bg-card border border-border/10 rounded-2xl">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-12 h-12 rounded-full bg-silver/10 flex items-center justify-center text-silver">
                                 <Ruler size={24} />
                             </div>
-                            <h3 className="text-xl font-display font-bold text-white">
+                            <h3 className="text-xl font-display font-bold text-foreground">
                                 {isTurkish ? "Nasıl Ölçülür?" : "How to Measure?"}
                             </h3>
                         </div>
@@ -89,7 +89,7 @@ export default function SizeGuidePage() {
                                 isTurkish ? "Topuk ile işaretlediğiniz nokta arasını CM olarak ölçün." : "Measure the distance from the heel to the mark in CM.",
                                 isTurkish ? "Tablomuzdan karşılık gelen numarayı seçin." : "Select the corresponding size from our table."
                             ].map((tip, idx) => (
-                                <li key={idx} className="flex gap-3 text-white/40 text-sm leading-relaxed">
+                                <li key={idx} className="flex gap-3 text-foreground/40 text-sm leading-relaxed">
                                     <CheckCircle2 size={16} className="text-silver shrink-0 mt-1" />
                                     {tip}
                                 </li>
@@ -97,16 +97,16 @@ export default function SizeGuidePage() {
                         </ul>
                     </div>
 
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-2xl">
+                    <div className="p-8 bg-card border border-border/10 rounded-2xl">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-12 h-12 rounded-full bg-silver/10 flex items-center justify-center text-silver">
                                 <Info size={24} />
                             </div>
-                            <h3 className="text-xl font-display font-bold text-white">
+                            <h3 className="text-xl font-display font-bold text-foreground">
                                 {isTurkish ? "Önemli İpuçları" : "Important Tips"}
                             </h3>
                         </div>
-                        <p className="text-white/40 text-sm leading-relaxed">
+                        <p className="text-foreground/40 text-sm leading-relaxed">
                             {isTurkish
                                 ? "Ayaklarınız gün içinde hafifçe şişebilir, bu nedenle ölçümü öğleden sonra yapmanızı öneririz. Eğer iki numara arasındaysanız, daha rahat bir kullanım için bir büyük numarayı tercih edebilirsiniz."
                                 : "Your feet may swell slightly during the day, so we recommend measuring in the afternoon. If you are between two sizes, we suggest choosing the larger one for better comfort."}

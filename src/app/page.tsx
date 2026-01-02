@@ -49,7 +49,7 @@ export default function Home() {
       <Hero isTurkish={isTurkish} />
 
       {/* Featured Products Section */}
-      <section id="collections" className="py-32 px-6 bg-black">
+      <section id="collections" className="py-32 px-6 bg-background">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div className="max-w-2xl">
@@ -61,7 +61,7 @@ export default function Home() {
                 dangerouslySetInnerHTML={{ __html: content.title }}
               />
             </div>
-            <p className="max-w-xs text-white/40 text-sm leading-relaxed">
+            <p className="max-w-xs text-foreground/40 text-sm leading-relaxed">
               {content.description}
             </p>
           </div>

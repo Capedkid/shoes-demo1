@@ -16,7 +16,7 @@ export default function MenPage() {
     const [isTurkish, setIsTurkish] = useState(true);
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <div className="pt-48 pb-24 px-6 max-w-[1440px] mx-auto">
@@ -31,7 +31,7 @@ export default function MenPage() {
                     <h1 className="text-6xl md:text-8xl font-display font-bold text-gradient mb-8">
                         {isTurkish ? "ERKEK" : "MEN"}
                     </h1>
-                    <p className="text-white/40 max-w-2xl text-xl font-sans">
+                    <p className="text-foreground/40 max-w-2xl text-xl font-sans">
                         {isTurkish
                             ? "Güç, performans ve stilin mükemmel uyumu. Her adımda otoriteyi ve konforu hissedin."
                             : "The perfect harmony of power, performance, and style. Feel authority and comfort in every step."}

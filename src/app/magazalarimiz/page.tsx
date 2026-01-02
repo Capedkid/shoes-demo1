@@ -21,7 +21,7 @@ export default function StoresPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
@@ -47,17 +47,17 @@ export default function StoresPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="group p-10 border border-white/5 bg-white/[0.01] rounded-3xl flex justify-between items-center hover:bg-white/[0.03] transition-all duration-500"
+                                className="group p-10 border border-border/5 bg-card rounded-3xl flex justify-between items-center hover:bg-foreground/[0.03] transition-all duration-500"
                             >
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
                                         <MapPin size={14} className="text-silver" />
                                         <span className="text-xs tracking-[0.3em] font-semibold text-silver uppercase">{store.city}</span>
                                     </div>
-                                    <h3 className="text-2xl font-display font-bold text-white mb-2">{store.location}</h3>
-                                    <p className="text-white/40 text-sm font-sans">{store.address}</p>
+                                    <h3 className="text-2xl font-display font-bold text-foreground mb-2">{store.location}</h3>
+                                    <p className="text-foreground/40 text-sm font-sans">{store.address}</p>
                                 </div>
-                                <button type="button" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/20 group-hover:text-white group-hover:border-white transition-all duration-300">
+                                <button type="button" className="w-12 h-12 rounded-full border border-border/10 flex items-center justify-center text-foreground/20 group-hover:text-foreground group-hover:border-foreground transition-all duration-300">
                                     <Navigation size={18} />
                                 </button>
                             </motion.div>

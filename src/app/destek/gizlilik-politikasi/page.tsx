@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     const [isTurkish, setIsTurkish] = useState(true);
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <section className="pt-48 pb-24 px-6">
@@ -26,14 +26,14 @@ export default function PrivacyPage() {
                         <h1 className="text-5xl md:text-7xl font-display font-bold text-gradient mb-8 uppercase">
                             {isTurkish ? "GİZLİLİK POLİTİKASI" : "PRIVACY POLICY"}
                         </h1>
-                        <p className="text-white/20 text-[10px] uppercase tracking-[0.3em] font-medium">
+                        <p className="text-foreground/20 text-[10px] uppercase tracking-[0.3em] font-medium">
                             {isTurkish ? "SON GÜNCELLEME" : "LAST UPDATED"}: 02.01.2026
                         </p>
                     </motion.div>
 
-                    <div className="flex flex-col gap-12 text-white/60 font-sans leading-relaxed text-sm">
-                        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
-                            <h2 className="text-xl font-display font-bold text-white mb-4 uppercase">{isTurkish ? "1. VERİ TOPLAMA" : "1. DATA COLLECTION"}</h2>
+                    <div className="flex flex-col gap-12 text-foreground/60 font-sans leading-relaxed text-sm">
+                        <div className="bg-card border border-border/10 rounded-2xl p-8">
+                            <h2 className="text-xl font-display font-bold text-foreground mb-4 uppercase">{isTurkish ? "1. VERİ TOPLAMA" : "1. DATA COLLECTION"}</h2>
                             <p>
                                 {isTurkish
                                     ? "SOLEEDGE Dynamics olarak, sitemizi ziyaretleriniz sırasında kişisel verilerinizi 6698 sayılı KVKK kapsamına uygun olarak işliyoruz. Adınız, soyadınız, iletişim bilgileriniz ve sipariş detaylarınız hizmet sunumu için toplanmaktadır."
@@ -41,8 +41,8 @@ export default function PrivacyPage() {
                             </p>
                         </div>
 
-                        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
-                            <h2 className="text-xl font-display font-bold text-white mb-4 uppercase">{isTurkish ? "2. ÇEREZLER" : "2. COOKIES"}</h2>
+                        <div className="bg-card border border-border/10 rounded-2xl p-8">
+                            <h2 className="text-xl font-display font-bold text-foreground mb-4 uppercase">{isTurkish ? "2. ÇEREZLER" : "2. COOKIES"}</h2>
                             <p>
                                 {isTurkish
                                     ? "Sitemizde kullanıcı deneyimini artırmak ve tercihlerinizi hatırlamak adına çerezler (cookies) kullanılmaktadır. Tarayıcı ayarlarınızdan çerezleri dilediğiniz zaman yönetebilirsiniz."
@@ -50,8 +50,8 @@ export default function PrivacyPage() {
                             </p>
                         </div>
 
-                        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
-                            <h2 className="text-xl font-display font-bold text-white mb-4 uppercase">{isTurkish ? "3. BİLGİ PAYLAŞIMI" : "3. SHARING INFORMATION"}</h2>
+                        <div className="bg-card border border-border/10 rounded-2xl p-8">
+                            <h2 className="text-xl font-display font-bold text-foreground mb-4 uppercase">{isTurkish ? "3. BİLGİ PAYLAŞIMI" : "3. SHARING INFORMATION"}</h2>
                             <p>
                                 {isTurkish
                                     ? "Toplanan veriler, yasal zorunluluklar ve lojistik (kargo) operasyonları dışında asla üçüncü şahıslarla ticari amaçla paylaşılmaz."

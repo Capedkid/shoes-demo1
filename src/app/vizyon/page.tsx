@@ -9,7 +9,7 @@ export default function VisionPage() {
     const [isTurkish, setIsTurkish] = useState(true);
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             {/* Hero Section */}
@@ -34,7 +34,7 @@ export default function VisionPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="text-white/60 text-base md:text-xl leading-relaxed font-sans"
+                        className="text-foreground/60 text-base md:text-xl leading-relaxed font-sans"
                     >
                         {isTurkish
                             ? "SOLEEDGE olarak, ayakkabının sadece bir ihtiyaç değil, insan potansiyelini artıran bir teknoloji olduğuna inanıyoruz. Tasarım ve mühendisliğin kesiştiği noktada, dünyayı daha hızlı, daha konforlu ve daha stili takip eden bir yer haline getirmek için çalışıyoruz."
@@ -44,7 +44,7 @@ export default function VisionPage() {
             </section>
 
             {/* Values */}
-            <section className="py-24 px-6 bg-white/[0.02]">
+            <section className="py-24 px-6 bg-card border-y border-border/5">
                 <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         {
@@ -66,10 +66,10 @@ export default function VisionPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.2 }}
-                            className="p-12 border border-white/5 bg-black/40 rounded-3xl"
+                            className="p-12 border border-border/5 bg-background/40 rounded-3xl"
                         >
-                            <h3 className="text-2xl font-display font-bold text-white mb-6 uppercase tracking-wider">{item.title}</h3>
-                            <p className="text-white/40 leading-relaxed">{item.desc}</p>
+                            <h3 className="text-2xl font-display font-bold text-foreground mb-6 uppercase tracking-wider">{item.title}</h3>
+                            <p className="text-foreground/40 leading-relaxed">{item.desc}</p>
                         </motion.div>
                     ))}
                 </div>

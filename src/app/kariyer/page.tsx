@@ -14,7 +14,7 @@ export default function CareerPage() {
     const [isTurkish, setIsTurkish] = useState(true);
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
@@ -30,7 +30,7 @@ export default function CareerPage() {
                         <h1 className="text-4xl md:text-8xl font-display font-bold text-gradient mb-8 uppercase">
                             {isTurkish ? "KARİYER" : "CAREER"}
                         </h1>
-                        <p className="text-white/40 max-w-xl mx-auto font-sans leading-relaxed">
+                        <p className="text-foreground/40 max-w-xl mx-auto font-sans leading-relaxed">
                             {isTurkish
                                 ? "Geleceğin ayakkabı teknolojilerini şekillendirmek için en parlak zekaları arıyoruz. Yenilikçi bir ekibin parçası olmak ister misiniz?"
                                 : "We are looking for the brightest minds to shape the footwear technologies of the future. Do you want to be part of an innovative team?"}
@@ -51,11 +51,11 @@ export default function CareerPage() {
                         ))}
                     </div>
 
-                    <div className="border border-white/10 rounded-3xl p-12 text-center bg-white/5 backdrop-blur-md">
-                        <h2 className="text-3xl font-display font-bold text-white mb-6">
+                    <div className="border border-border/10 rounded-3xl p-12 text-center bg-foreground/5 backdrop-blur-md">
+                        <h2 className="text-3xl font-display font-bold text-foreground mb-6">
                             {isTurkish ? "İş İlanlarını Görüntüle" : "View Job Openings"}
                         </h2>
-                        <button type="button" className="px-12 h-14 bg-white text-black font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 rounded-full">
+                        <button type="button" className="px-12 h-14 bg-foreground text-background font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 rounded-full">
                             {isTurkish ? "BAŞVURU YAP" : "APPLY NOW"}
                         </button>
                     </div>

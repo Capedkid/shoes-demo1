@@ -42,7 +42,7 @@ export default function FAQPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
@@ -61,21 +61,21 @@ export default function FAQPage() {
                         {faqs.map((faq, idx) => (
                             <div
                                 key={idx}
-                                className="border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                                className="border border-border/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-border/10"
                             >
                                 <button
                                     type="button"
                                     onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                                    className="w-full p-8 flex justify-between items-center text-left bg-white/[0.01]"
+                                    className="w-full p-8 flex justify-between items-center text-left bg-card"
                                 >
-                                    <span className="text-lg font-display font-medium text-white">{faq.q}</span>
-                                    {openIdx === idx ? <Minus size={18} className="text-silver" /> : <Plus size={18} className="text-white/20" />}
+                                    <span className="text-lg font-display font-medium text-foreground">{faq.q}</span>
+                                    {openIdx === idx ? <Minus size={18} className="text-silver" /> : <Plus size={18} className="text-foreground/20" />}
                                 </button>
                                 {openIdx === idx && (
                                     <motion.div
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
-                                        className="px-8 pb-8 text-white/40 font-sans leading-relaxed"
+                                        className="px-8 pb-8 text-foreground/40 font-sans leading-relaxed"
                                     >
                                         {faq.a}
                                     </motion.div>

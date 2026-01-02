@@ -14,7 +14,7 @@ export default function SustainabilityPage() {
     const [isTurkish, setIsTurkish] = useState(true);
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
@@ -31,7 +31,7 @@ export default function SustainabilityPage() {
                         <h1 className="text-4xl md:text-8xl font-display font-bold text-gradient mb-8 md:mb-12 uppercase">
                             {isTurkish ? "SÜRDÜRÜLEBİLİRLİK" : "SUSTAINABILITY"}
                         </h1>
-                        <p className="text-white/40 max-w-2xl mx-auto text-xl font-sans leading-relaxed">
+                        <p className="text-foreground/40 max-w-2xl mx-auto text-xl font-sans leading-relaxed">
                             {isTurkish
                                 ? "Gezegenimizi korurken geleceğin ayakkabılarını üretiyoruz. Karbon ayak izimizi minimize etmek ve döngüsel ekonomiye katkıda bulunmak en büyük önceliğimiz."
                                 : "We produce the shoes of the future while protecting our planet. Minimizing our carbon footprint and contributing to the circular economy is our top priority."}
@@ -50,11 +50,11 @@ export default function SustainabilityPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.2 }}
-                                className="p-12 border border-white/5 bg-white/[0.01] rounded-3xl flex flex-col items-center gap-6"
+                                className="p-12 border border-border/5 bg-card rounded-3xl flex flex-col items-center gap-6"
                             >
                                 {item.icon}
-                                <h3 className="text-2xl font-display font-bold text-white uppercase tracking-wider">{item.title}</h3>
-                                <p className="text-white/40 leading-relaxed font-sans">{item.desc}</p>
+                                <h3 className="text-2xl font-display font-bold text-foreground uppercase tracking-wider">{item.title}</h3>
+                                <p className="text-foreground/40 leading-relaxed font-sans">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 };
 
 import { CartProvider } from "@/context/CartContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 export default function RootLayout({
   children,
@@ -25,13 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${syne.variable} ${montserrat.variable} antialiased bg-black text-white selection:bg-silver selection:text-black`}
-      >
-        <CartProvider>
-          {children}
-        </CartProvider>
+    <html lang="tr" suppressHydrationWarning>
+      <body className={`${syne.variable} ${montserrat.variable} antialiased`}>
+        <ThemeProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

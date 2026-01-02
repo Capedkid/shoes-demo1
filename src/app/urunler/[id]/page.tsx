@@ -66,7 +66,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     };
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen bg-background text-foreground">
             <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
 
             <div className="pt-24 md:pt-32 pb-24 px-6 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -93,8 +93,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     </div>
 
                     {/* Zoom Indicator */}
-                    <div className="absolute bottom-6 right-6 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-white/10 opacity-100 md:group-hover:opacity-0 transition-opacity">
-                        <span className="text-[9px] md:text-[10px] text-white/60 tracking-widest uppercase flex items-center gap-2">
+                    <div className="absolute bottom-6 right-6 px-3 py-1.5 bg-background/60 backdrop-blur-md rounded-full border border-border/10 opacity-100 md:group-hover:opacity-0 transition-opacity">
+                        <span className="text-[9px] md:text-[10px] text-foreground/60 tracking-widest uppercase flex items-center gap-2">
                             {isTurkish ? "Mercek Etkisi" : "Lens Effect"}
                         </span>
                     </div>
@@ -111,19 +111,19 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         <span className="text-silver uppercase tracking-[0.3em] text-[10px] md:text-xs font-semibold mb-4 block">
                             {isTurkish ? "Premium Koleksiyon" : "Premium Collection"}
                         </span>
-                        <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 uppercase">
+                        <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4 uppercase">
                             {product.name}
                         </h1>
                         <p className="text-2xl md:text-3xl font-display font-medium text-silver">${product.price}</p>
                     </div>
 
-                    <p className="text-white/60 text-lg leading-relaxed max-w-xl">
+                    <p className="text-foreground/60 text-lg leading-relaxed max-w-xl">
                         {product.description}
                     </p>
 
                     {/* Size Selection */}
                     <div>
-                        <span className="text-[10px] uppercase tracking-widest text-white/40 mb-4 block">
+                        <span className="text-[10px] uppercase tracking-widest text-foreground/40 mb-4 block">
                             {isTurkish ? "NUMARA SEÇİN" : "SELECT SIZE"}
                         </span>
                         <div className="flex flex-wrap gap-3">
@@ -133,7 +133,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                                     type="button"
                                     onClick={() => setSelectedSize(size)}
                                     className={`w-14 h-14 flex items-center justify-center border transition-all duration-300 font-display text-sm
-                    ${selectedSize === size ? "bg-white text-black border-white" : "border-white/10 text-white/40 hover:border-white/40 hover:text-white"}`}
+                    ${selectedSize === size ? "bg-foreground text-background border-foreground" : "border-border/10 text-foreground/40 hover:border-foreground/40 hover:text-foreground"}`}
                                 >
                                     {size}
                                 </button>
@@ -143,20 +143,20 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
                     {/* Quantity and CTA */}
                     <div className="flex flex-col sm:flex-row gap-6 items-center">
-                        <div className="flex items-center border border-white/10 rounded-full h-14 px-4 bg-white/5">
+                        <div className="flex items-center border border-border/10 rounded-full h-14 px-4 bg-foreground/5">
                             <button
                                 type="button"
                                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                className="text-white/40 hover:text-white transition-colors"
+                                className="text-foreground/40 hover:text-foreground transition-colors"
                                 disabled={quantity <= 1}
                             >
                                 <Minus size={18} />
                             </button>
-                            <span className="w-12 text-center text-white font-display font-bold">{quantity}</span>
+                            <span className="w-12 text-center text-foreground font-display font-bold">{quantity}</span>
                             <button
                                 type="button"
                                 onClick={() => setQuantity(quantity + 1)}
-                                className="text-white/40 hover:text-white transition-colors"
+                                className="text-foreground/40 hover:text-foreground transition-colors"
                             >
                                 <Plus size={18} />
                             </button>
@@ -165,7 +165,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         <button
                             type="button"
                             onClick={handleAddToCart}
-                            className="flex-1 w-full bg-white text-black h-14 rounded-full font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3"
+                            className="flex-1 w-full bg-foreground text-background h-14 rounded-full font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3"
                         >
                             <ShoppingCart size={18} />
                             {isTurkish ? "SEPETE EKLE" : "ADD TO CART"}
@@ -174,11 +174,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
                     {/* Actions */}
                     <div className="flex gap-8 pt-4">
-                        <button type="button" className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40 hover:text-white transition-colors">
+                        <button type="button" className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-foreground/40 hover:text-foreground transition-colors">
                             <Heart size={16} />
                             {isTurkish ? "FAVORİLERE EKLE" : "ADD TO WISHLIST"}
                         </button>
-                        <button type="button" className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40 hover:text-white transition-colors">
+                        <button type="button" className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-foreground/40 hover:text-foreground transition-colors">
                             <Share2 size={16} />
                             {isTurkish ? "PAYLAŞ" : "SHARE"}
                         </button>

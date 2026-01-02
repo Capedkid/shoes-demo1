@@ -56,7 +56,7 @@ const Hero = ({ isTurkish }: HeroProps) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-white/60 text-base md:text-lg leading-relaxed font-sans max-w-md mx-auto lg:mx-0"
+                        className="text-foreground/60 text-base md:text-lg leading-relaxed font-sans max-w-md mx-auto lg:mx-0"
                     >
                         {content.description}
                     </motion.p>
@@ -68,13 +68,13 @@ const Hero = ({ isTurkish }: HeroProps) => {
                         className="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center lg:justify-start"
                     >
                         <Link href="/urunler" className="w-full sm:w-auto">
-                            <button className="w-full sm:w-auto px-10 py-5 bg-white text-black font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3 group">
+                            <button className="w-full sm:w-auto px-10 py-5 bg-foreground text-background font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3 group">
                                 {content.primaryBtn}
                                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </Link>
                         <Link href="/vizyon" className="w-full sm:w-auto">
-                            <button className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white font-display font-bold tracking-widest text-xs uppercase hover:border-white transition-all duration-300">
+                            <button className="w-full sm:w-auto px-10 py-5 border border-foreground/20 text-foreground font-display font-bold tracking-widest text-xs uppercase hover:border-foreground transition-all duration-300">
                                 {content.secondaryBtn}
                             </button>
                         </Link>
@@ -88,13 +88,13 @@ const Hero = ({ isTurkish }: HeroProps) => {
                     className="relative aspect-square w-full max-w-[400px] md:max-w-none mx-auto order-1 lg:order-2"
                 >
                     {/* Glowing Background Effect */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 rounded-full blur-[60px] md:blur-[100px]" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-foreground/5 rounded-full blur-[60px] md:blur-[100px]" />
 
                     <Image
                         src="/hero.png"
                         alt="SoleEdge Futurist Runner"
                         fill
-                        className="object-contain drop-shadow-[0_20px_50px_rgba(255,255,255,0.1)] animate-float"
+                        className="object-contain drop-shadow-[0_20px_50px_rgba(var(--foreground-rgb),0.1)] animate-float"
                         priority
                     />
                 </motion.div>
@@ -107,8 +107,8 @@ const Hero = ({ isTurkish }: HeroProps) => {
                 transition={{ delay: 1.5, duration: 1 }}
                 className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 hidden sm:flex"
             >
-                <span className="text-[10px] uppercase tracking-[0.4em] text-white/30">{content.scroll}</span>
-                <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-white/30 to-transparent" />
+                <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/30">{content.scroll}</span>
+                <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-foreground/30 to-transparent" />
             </motion.div>
         </section>
     );
