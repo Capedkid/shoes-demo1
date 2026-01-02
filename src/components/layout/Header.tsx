@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Search, ShoppingBag, Menu, X, Globe, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import CartDrawer from "../cart/CartDrawer";
 
 interface HeaderProps {
     isTurkish: boolean;
@@ -12,6 +14,7 @@ interface HeaderProps {
 
 const Header = ({ isTurkish, setIsTurkish }: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { setIsCartOpen, totalItems } = useCart();
 
     const navLinks = isTurkish
         ? [{ name: "Koleksiyonlar", href: "/urunler" }, { name: "Erkek", href: "/koleksiyon/erkek" }, { name: "Kadın", href: "/koleksiyon/kadin" }, { name: "Özel Tasarım", href: "/urunler" }]
@@ -71,13 +74,19 @@ const Header = ({ isTurkish, setIsTurkish }: HeaderProps) => {
                         <Search size={20} strokeWidth={1.5} />
                     </button>
 
-                    <button type="button" className="hidden sm:block text-white/60 hover:text-white transition-colors duration-300">
+                    <Link href="/giris-yap" className="hidden sm:block text-white/60 hover:text-white transition-colors duration-300">
                         <User size={20} strokeWidth={1.5} />
-                    </button>
+                    </Link>
 
-                    <button type="button" className="text-white/60 hover:text-white transition-colors duration-300 relative">
+                    <button
+                        type="button"
+                        onClick={() => setIsCartOpen(true)}
+                        className="text-white/60 hover:text-white transition-colors duration-300 relative"
+                    >
                         <ShoppingBag size={20} strokeWidth={1.5} />
-                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-silver rounded-full" />
+                        {totalItems > 0 && (
+                            <span className="absolute -top-1 -right-1 w-2 h-2 bg-silver rounded-full" />
+                        )}
                     </button>
                     <button
                         type="button"
@@ -137,6 +146,8 @@ const Header = ({ isTurkish, setIsTurkish }: HeaderProps) => {
                     </div>
                 </motion.div>
             )}
+
+            <CartDrawer isTurkish={isTurkish} />
         </motion.header>
     );
 };

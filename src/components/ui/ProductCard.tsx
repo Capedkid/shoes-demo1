@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Plus } from "lucide-react";
+import { Plus, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
     id?: number | string;
@@ -15,6 +16,21 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ id = 1, name, category, price, image, index }: ProductCardProps) => {
+    const { addToCart } = useCart();
+
+    const handleQuickAdd = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart({
+            id: typeof id === 'string' ? parseInt(id) : id,
+            name,
+            price,
+            image,
+            quantity: 1,
+            size: "42" // Default size for quick add
+        });
+    };
+
     return (
         <Link href={`/urunler/${id}`}>
             <motion.div
@@ -32,16 +48,37 @@ const ProductCard = ({ id = 1, name, category, price, image, index }: ProductCar
                         className="object-contain group-hover:scale-110 transition-transform duration-700 ease-in-out"
                     />
 
-                    {/* Hover Action */}
-                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                        <button type="button" className="bg-white text-black p-4 rounded-full translate-y-10 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                            <Plus size={24} />
+                    {/* Hover Action (Desktop) */}
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
+                        <button
+                            type="button"
+                            onClick={handleQuickAdd}
+                            className="bg-white text-black h-12 w-12 rounded-full translate-y-10 group-hover:translate-y-0 transition-all duration-500 delay-75 shadow-xl hover:bg-silver flex items-center justify-center relative group/btn"
+                        >
+                            <div className="relative flex items-center justify-center">
+                                <ShoppingBag size={20} className="group-hover/btn:scale-90 transition-transform duration-300" />
+                                <Plus size={12} strokeWidth={3} className="absolute -top-1 -right-1 bg-white rounded-full p-0.5 text-black" />
+                            </div>
+                        </button>
+                    </div>
+
+                    {/* Quick Add (Mobile - Persistent) */}
+                    <div className="absolute top-4 right-4 md:hidden z-10">
+                        <button
+                            type="button"
+                            onClick={handleQuickAdd}
+                            className="bg-white/90 backdrop-blur-md text-black h-10 w-10 rounded-full shadow-lg active:scale-95 transition-transform flex items-center justify-center"
+                        >
+                            <div className="relative flex items-center justify-center">
+                                <ShoppingBag size={16} />
+                                <Plus size={10} strokeWidth={3} className="absolute -top-1 -right-1 bg-white rounded-full p-0.5 text-black" />
+                            </div>
                         </button>
                     </div>
 
                     {/* Category Tag */}
-                    <div className="absolute top-6 left-6">
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">
+                    <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10">
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-white/50 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
                             {category}
                         </span>
                     </div>

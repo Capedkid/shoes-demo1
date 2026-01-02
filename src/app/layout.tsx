@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Discover a curated collection of ultra-premium footwear. Engineered for excellence, designed for the bold.",
 };
 
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${syne.variable} ${montserrat.variable} antialiased bg-black text-white selection:bg-silver selection:text-black`}
       >
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

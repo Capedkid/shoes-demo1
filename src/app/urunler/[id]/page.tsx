@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import { Plus, Minus, ShoppingCart, Heart, Share2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useCart } from "@/context/CartContext";
 
 interface Product {
     name: string;
@@ -24,6 +25,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     const [isTurkish, setIsTurkish] = useState(true);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const { addToCart } = useCart();
 
     // Unwrapping params using React.use() for Next.js 15+ compatibility
     const unwrappedParams = use(params);
@@ -45,6 +47,22 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
     const handleMouseLeave = () => {
         setZoomStyle({ transformOrigin: "center", scale: "1" });
+    };
+
+    const handleAddToCart = () => {
+        if (!selectedSize) {
+            alert(isTurkish ? "Lütfen bir numara seçin." : "Please select a size.");
+            return;
+        }
+
+        addToCart({
+            id: parseInt(id),
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: quantity,
+            size: selectedSize
+        });
     };
 
     return (
@@ -144,7 +162,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                             </button>
                         </div>
 
-                        <button type="button" className="flex-1 w-full bg-white text-black h-14 rounded-full font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3">
+                        <button
+                            type="button"
+                            onClick={handleAddToCart}
+                            className="flex-1 w-full bg-white text-black h-14 rounded-full font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3"
+                        >
                             <ShoppingCart size={18} />
                             {isTurkish ? "SEPETE EKLE" : "ADD TO CART"}
                         </button>
