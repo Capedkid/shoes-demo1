@@ -113,6 +113,35 @@ const CheckoutPage = () => {
                                         <input type="tel" className="w-full bg-white/[0.03] border border-white/5 rounded-2xl h-14 px-6 text-white text-sm focus:border-white/20 outline-none transition-colors" />
                                     </div>
                                 </div>
+
+                                {/* Gift Section */}
+                                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 space-y-6">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-silver/10 flex items-center justify-center text-silver">
+                                                <ShoppingBag size={18} />
+                                            </div>
+                                            <div>
+                                                <p className="text-white text-xs font-bold uppercase tracking-widest">{isTurkish ? "HEDİYE PAKETİ" : "GIFT WRAP"}</p>
+                                                <p className="text-[9px] text-white/30 uppercase tracking-widest mt-1">{isTurkish ? "Özel paketleme ve kart" : "Special packaging and card"}</p>
+                                            </div>
+                                        </div>
+                                        <div className="relative inline-flex items-center cursor-pointer group">
+                                            <input type="checkbox" className="sr-only peer" />
+                                            <div className="w-12 h-6 bg-white/5 rounded-full peer-checked:bg-white transition-all duration-300"></div>
+                                            <div className="absolute left-1 top-1 w-4 h-4 bg-white/20 rounded-full peer-checked:translate-x-6 peer-checked:bg-black transition-all"></div>
+                                        </div>
+                                    </div>
+                                    <div className="h-[1px] bg-white/5 w-full" />
+                                    <div className="space-y-3">
+                                        <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold ml-1">{isTurkish ? "HEDİYE NOTU" : "GIFT NOTE"}</label>
+                                        <textarea
+                                            placeholder={isTurkish ? "Notunuzu buraya yazın..." : "Write your note here..."}
+                                            className="w-full bg-white/[0.01] border border-white/5 rounded-2xl p-6 text-white text-sm focus:border-white/20 outline-none transition-colors h-24 resize-none"
+                                        />
+                                    </div>
+                                </div>
+
                                 <button onClick={() => setStep(2)} className="w-full bg-white text-black h-16 rounded-2xl font-display font-bold tracking-[0.2em] text-xs uppercase hover:bg-silver transition-all duration-300 shadow-xl">
                                     {t.next}
                                 </button>

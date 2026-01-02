@@ -68,7 +68,7 @@ export default function RegisterPage() {
                 </div>
 
                 <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-2">
                             <label className="text-[10px] text-white/40 uppercase tracking-widest ml-1 font-bold">{t.name}</label>
                             <div className="relative group">
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-2 relative">
                             <label className="text-[10px] text-white/40 uppercase tracking-widest ml-1 font-bold">{t.password}</label>
                             <div className="relative group">
