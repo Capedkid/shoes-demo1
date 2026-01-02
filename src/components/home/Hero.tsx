@@ -5,11 +5,10 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-interface HeroProps {
-    isTurkish: boolean;
-}
+import { useLanguage } from "@/context/LanguageContext";
 
-const Hero = ({ isTurkish }: HeroProps) => {
+const Hero = () => {
+    const { isTurkish } = useLanguage();
     const content = isTurkish ? {
         tag: "Ayakkabının Geleceği",
         title: "BOŞLUĞA <br /> ADIM AT",

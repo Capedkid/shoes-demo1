@@ -3,15 +3,16 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FAQPage() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
     const [openIdx, setOpenIdx] = useState<number | null>(0);
 
     const faqs = [
@@ -43,7 +44,7 @@ export default function FAQPage() {
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
                 <div className="max-w-[800px] mx-auto">
@@ -71,15 +72,20 @@ export default function FAQPage() {
                                     <span className="text-lg font-display font-medium text-foreground">{faq.q}</span>
                                     {openIdx === idx ? <Minus size={18} className="text-silver" /> : <Plus size={18} className="text-foreground/20" />}
                                 </button>
-                                {openIdx === idx && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        className="px-8 pb-8 text-foreground/40 font-sans leading-relaxed"
-                                    >
-                                        {faq.a}
-                                    </motion.div>
-                                )}
+                                <AnimatePresence initial={false}>
+                                    {openIdx === idx && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        >
+                                            <div className="px-8 pb-8 text-foreground/40 font-sans leading-relaxed">
+                                                {faq.a}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         ))}
                     </div>

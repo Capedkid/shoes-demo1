@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
 import ProductCard from "@/components/ui/ProductCard";
@@ -31,7 +31,7 @@ const featuredProducts = (isTurkish: boolean) => [
 ];
 
 export default function Home() {
-  const [isTurkish, setIsTurkish] = useState(true);
+  const { isTurkish } = useLanguage();
 
   const content = isTurkish ? {
     tag: "Özel Seçki",
@@ -45,8 +45,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
-      <Hero isTurkish={isTurkish} />
+      <Header />
+      <Hero />
 
       {/* Featured Products Section */}
       <section id="collections" className="py-32 px-6 bg-background">

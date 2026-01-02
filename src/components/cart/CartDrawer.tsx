@@ -4,14 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingBag, Trash2, Plus, Minus, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
 
-interface CartDrawerProps {
-    isTurkish: boolean;
-}
-
-const CartDrawer = ({ isTurkish }: CartDrawerProps) => {
+const CartDrawer = () => {
     const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
+    const { isTurkish } = useLanguage();
 
     const t = {
         title: isTurkish ? "SEPETİM" : "MY CART",
@@ -137,9 +135,9 @@ const CartDrawer = ({ isTurkish }: CartDrawerProps) => {
                                                         </button>
                                                     </div>
                                                     <div className="text-right">
-                                                        <p className="text-[10px] text-foreground/20 uppercase tracking-widest mb-1">Price</p>
+                                                        <p className="text-[10px] text-foreground/20 uppercase tracking-widest mb-1">{isTurkish ? "Fiyat" : "Price"}</p>
                                                         <p className="font-display font-bold text-foreground text-lg tracking-tight">
-                                                            ${(parseFloat(item.price) * item.quantity).toFixed(0)}
+                                                            ₺{(parseFloat(item.price) * item.quantity).toFixed(0)}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -158,7 +156,7 @@ const CartDrawer = ({ isTurkish }: CartDrawerProps) => {
                                         {t.total}
                                     </span>
                                     <span className="text-3xl font-display font-bold text-foreground">
-                                        ${totalPrice}
+                                        ₺{totalPrice}
                                     </span>
                                 </div>
                                 <Link href="/odeme" onClick={() => setIsCartOpen(false)}>

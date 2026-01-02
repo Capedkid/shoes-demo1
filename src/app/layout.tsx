@@ -13,12 +13,13 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "SoleEdge | Premium Footwear Experience",
-  description: "Discover a curated collection of ultra-premium footwear. Engineered for excellence, designed for the bold.",
+  title: "SoleEdge | Premium Ayakkabı Deneyimi",
+  description: "En yüksek kaliteye sahip ayakkabı koleksiyonumuzu keşfedin. Mükemmellik için tasarlandı, cesurlar için üretildi.",
 };
 
 import { CartProvider } from "@/context/CartContext";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -28,11 +29,13 @@ export default function RootLayout({
   return (
     <html lang="tr" suppressHydrationWarning>
       <body className={`${syne.variable} ${montserrat.variable} antialiased`}>
-        <ThemeProvider>
-          <CartProvider>
-            {children}
-          </CartProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

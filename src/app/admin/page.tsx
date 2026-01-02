@@ -15,14 +15,19 @@ import {
     ExternalLink,
     ArrowUpRight,
     ArrowDownRight,
-    MoreVertical
+    MoreVertical,
+    X
 } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState("dashboard");
-    const [isTurkish, setIsTurkish] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { isTurkish } = useLanguage();
+    const { theme } = useTheme();
 
     const stats = [
         { label: isTurkish ? "Toplam Satış" : "Total Sales", value: "₺45.285,00", trend: "+12.5%", isUp: true },
@@ -55,8 +60,23 @@ const AdminDashboard = () => {
 
     return (
         <div className="min-h-screen bg-background text-foreground flex">
+            {/* Sidebar Toggle - Mobile Only */}
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-[60] h-20 bg-background/80 backdrop-blur-md border-b border-border/10 flex items-center justify-between px-6">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center text-background font-display font-black text-sm italic">SE</div>
+                    <span className="font-display font-extrabold tracking-tighter text-sm italic tracking-[-0.05em]">SOLEEDGE <span className="text-[8px] opacity-20 align-top ml-1">ADMIN</span></span>
+                </div>
+                <button
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    className="flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-xl font-display font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-foreground/20"
+                >
+                    {isSidebarOpen ? <X size={16} /> : <LayoutDashboard size={16} />}
+                    <span>{isTurkish ? "MENÜ" : "MENU"}</span>
+                </button>
+            </div>
+
             {/* Sidebar */}
-            <aside className="w-72 bg-card border-r border-border/5 flex flex-col p-8 fixed h-full z-50">
+            <aside className={`w-72 bg-card border-r border-border/5 flex flex-col p-8 fixed h-full z-50 transition-transform duration-500 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="flex items-center gap-3 mb-16 px-4">
                     <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center text-background font-display font-black text-xl italic">SE</div>
                     <span className="font-display font-extrabold tracking-tighter text-2xl italic tracking-[-0.05em]">SOLEEDGE <span className="text-[10px] text-foreground/20 align-top ml-1 tracking-widest font-bold">ADMIN</span></span>
@@ -73,7 +93,10 @@ const AdminDashboard = () => {
                     ].map((item) => (
                         <button
                             key={item.id}
-                            onClick={() => setActiveTab(item.id)}
+                            onClick={() => {
+                                setActiveTab(item.id);
+                                setIsSidebarOpen(false);
+                            }}
                             className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all group ${activeTab === item.id ? 'bg-foreground text-background shadow-lg' : 'text-foreground/40 hover:bg-foreground/[0.03] hover:text-foreground'}`}
                         >
                             <item.icon size={20} />
@@ -95,27 +118,29 @@ const AdminDashboard = () => {
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 ml-72 p-12 lg:p-16">
+            <main className="flex-1 lg:ml-72 p-6 md:p-12 lg:p-16 w-full overflow-hidden pt-28 lg:pt-16">
                 {/* Top Header */}
-                <header className="flex justify-between items-center mb-16">
+                <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-16 px-2">
                     <div>
-                        <h1 className="text-4xl font-display font-bold italic tracking-tighter uppercase mb-2">{isTurkish ? "Hoş Geldin, Admin" : "Welcome, Admin"}</h1>
-                        <p className="text-[10px] text-foreground/30 uppercase tracking-[0.3em] font-bold">{isTurkish ? "İşte mağazanın bugünkü özeti" : "Here's what's happening today"}</p>
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold italic tracking-tighter uppercase mb-2 leading-none">{isTurkish ? "Hoş Geldin, Admin" : "Welcome, Admin"}</h1>
+                        <p className="text-[9px] md:text-[10px] text-foreground/30 uppercase tracking-[0.3em] font-bold">{isTurkish ? "İşte mağazanın bugünkü özeti" : "Here's what's happening today"}</p>
                     </div>
-                    <div className="flex items-center gap-6">
-                        <div className="relative group">
+                    <div className="flex items-center gap-3 md:gap-6">
+                        <div className="hidden sm:block relative group">
                             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/20 group-focus-within:text-foreground transition-colors" />
                             <input
                                 type="text"
                                 placeholder={isTurkish ? "Ara..." : "Search..."}
-                                className="bg-foreground/[0.03] border border-border/5 rounded-2xl h-12 pl-12 pr-6 text-sm outline-none focus:border-border/20 transition-all w-64 text-foreground"
+                                className="bg-foreground/[0.03] border border-border/5 rounded-2xl h-12 pl-12 pr-6 text-sm outline-none focus:border-border/20 transition-all w-48 md:w-64 text-foreground"
                             />
                         </div>
-                        <button className="relative w-12 h-12 rounded-2xl bg-foreground/[0.03] border border-border/5 flex items-center justify-center text-foreground/40 hover:text-foreground hover:border-border/20 transition-all">
-                            <Bell size={20} />
-                            <span className="absolute top-3 right-3 w-2 h-2 bg-silver rounded-full animate-pulse border-2 border-background" />
-                        </button>
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-foreground/10 to-foreground/5 border border-border/10 flex items-center justify-center font-display font-bold text-sm italic text-foreground">AD</div>
+                        <div className="flex items-center gap-4 ml-auto lg:ml-0">
+                            <button className="relative w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-foreground/[0.03] border border-border/5 flex items-center justify-center text-foreground/40 hover:text-foreground hover:border-border/20 transition-all">
+                                <Bell size={20} />
+                                <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-silver rounded-full animate-pulse border-2 border-background" />
+                            </button>
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-tr from-foreground/10 to-foreground/5 border border-border/10 flex items-center justify-center font-display font-bold text-sm italic text-foreground shadow-sm">AD</div>
+                        </div>
                     </div>
                 </header>
 
@@ -146,10 +171,10 @@ const AdminDashboard = () => {
                             </div>
 
                             {/* Recent Orders List */}
-                            <section className="bg-card border border-border/5 rounded-[40px] p-10">
-                                <div className="flex items-center justify-between mb-10">
+                            <section className="bg-card border border-border/5 rounded-[32px] md:rounded-[40px] p-6 md:p-10">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 md:mb-10 gap-4">
                                     <h2 className="text-xl font-display font-bold italic tracking-tighter uppercase">{isTurkish ? "Son Siparişler" : "Recent Orders"}</h2>
-                                    <button onClick={() => setActiveTab("orders")} className="text-[10px] text-foreground/40 hover:text-foreground uppercase tracking-[0.2em] font-bold flex items-center gap-2 transition-all group">
+                                    <button onClick={() => setActiveTab("orders")} className="text-[10px] text-foreground/40 hover:text-foreground uppercase tracking-[0.2em] font-bold flex items-center gap-2 transition-all group self-start sm:self-auto">
                                         {isTurkish ? "TÜMÜNÜ GÖR" : "VIEW ALL"}
                                         <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                     </button>

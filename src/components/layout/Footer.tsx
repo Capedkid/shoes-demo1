@@ -1,48 +1,50 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
 import {
     Instagram,
     Facebook,
     Twitter,
     Linkedin,
-    MessageCircle, // Using MessageCircle for WhatsApp
+    MessageCircle,
     ArrowUpRight,
     Mail
 } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
+    const { isTurkish } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     const footerLinks = [
         {
-            title: "Alışveriş",
+            title: isTurkish ? "Alışveriş" : "Shopping",
             links: [
-                { name: "Yeni Gelenler", href: "/urunler" },
-                { name: "Erkek Koleksiyonu", href: "/koleksiyon/erkek" },
-                { name: "Kadın Koleksiyonu", href: "/koleksiyon/kadin" },
-                { name: "Özel Tasarım", href: "#" },
-                { name: "Numaranı Bul", href: "/numara-rehberi" },
+                { name: isTurkish ? "Yeni Gelenler" : "New Arrivals", href: "/urunler" },
+                { name: isTurkish ? "Erkek Koleksiyonu" : "Men's Collection", href: "/koleksiyon/erkek" },
+                { name: isTurkish ? "Kadın Koleksiyonu" : "Women's Collection", href: "/koleksiyon/kadin" },
+                { name: isTurkish ? "Özel Tasarım" : "Custom Design", href: "#" },
+                { name: isTurkish ? "Numaranı Bul" : "Find Your Size", href: "/numara-rehberi" },
             ],
         },
         {
-            title: "Kurumsal",
+            title: isTurkish ? "Kurumsal" : "Corporate",
             links: [
-                { name: "Hakkımızda", href: "/hakkimizda" },
-                { name: "Sürdürülebilirlik", href: "/surdurulebilirlik" },
-                { name: "Mağazalarımız", href: "/magazalarimiz" },
-                { name: "Kariyer", href: "/kariyer" },
-                { name: "İletişim", href: "/iletisim" },
+                { name: isTurkish ? "Hakkımızda" : "About Us", href: "/hakkimizda" },
+                { name: isTurkish ? "Sürdürülebilirlik" : "Sustainability", href: "/surdurulebilirlik" },
+                { name: isTurkish ? "Mağazalarımız" : "Our Stores", href: "/magazalarimiz" },
+                { name: isTurkish ? "Kariyer" : "Careers", href: "/kariyer" },
+                { name: isTurkish ? "İletişim" : "Contact", href: "/iletisim" },
             ],
         },
         {
-            title: "Destek",
+            title: isTurkish ? "Destek" : "Support",
             links: [
-                { name: "Kargo Takibi", href: "/destek/kargo-takibi" },
-                { name: "İade & Değişim", href: "/destek/iade-degisim" },
-                { name: "Sıkça Sorulan Sorular", href: "/destek/sss" },
-                { name: "Ödeme Yöntemleri", href: "/destek/odeme-yontemleri" },
-                { name: "Gizlilik Politikası", href: "/destek/gizlilik-politikasi" },
+                { name: isTurkish ? "Kargo Takibi" : "Order Tracking", href: "/destek/kargo-takibi" },
+                { name: isTurkish ? "İade & Değişim" : "Returns & Exchanges", href: "/destek/iade-degisim" },
+                { name: isTurkish ? "Sıkça Sorulan Sorular" : "FAQ", href: "/destek/sss" },
+                { name: isTurkish ? "Ödeme Yöntemleri" : "Payment Methods", href: "/destek/odeme-yontemleri" },
+                { name: isTurkish ? "Gizlilik Politikası" : "Privacy Policy", href: "/destek/gizlilik-politikasi" },
             ],
         },
     ];
@@ -68,8 +70,9 @@ const Footer = () => {
                             </span>
                         </Link>
                         <p className="text-foreground/40 text-sm leading-relaxed max-w-sm mb-8">
-                            Sadece bir ayakkabı değil, bir yaşam tarzı. Geleceğin teknolojisini
-                            bugünün stiliyle buluşturuyoruz. Adımlarınızı bizimle güçlendirin.
+                            {isTurkish
+                                ? "Sadece bir ayakkabı değil, bir yaşam tarzı. Geleceğin teknolojisini bugünün stiliyle buluşturuyoruz. Adımlarınızı bizimle güçlendirin."
+                                : "Not just a shoe, but a lifestyle. We bring the technology of the future together with today's style. Empower your steps with us."}
                         </p>
                         <div className="flex gap-4">
                             {socialLinks.map((social) => (
@@ -111,12 +114,12 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="pt-12 border-t border-border/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-foreground/20 text-[10px] uppercase tracking-[0.2em]">
-                        &copy; {currentYear} SOLEEDGE Dynamics. Tüm Hakları Saklıdır.
+                        &copy; {currentYear} SOLEEDGE Dynamics. {isTurkish ? "Tüm Hakları Saklıdır" : "All Rights Reserved"}.
                     </p>
                     <div className="flex gap-8">
-                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">KVKK</Link>
-                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">Çerez Politikası</Link>
-                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">Kullanım Koşulları</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">{isTurkish ? "KVKK" : "GDPR"}</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">{isTurkish ? "Çerez Politikası" : "Cookie Policy"}</Link>
+                        <Link href="#" className="text-foreground/20 hover:text-foreground text-[10px] uppercase tracking-[0.2em] transition-colors">{isTurkish ? "Kullanım Koşulları" : "Terms of Use"}</Link>
                     </div>
                 </div>
             </div>

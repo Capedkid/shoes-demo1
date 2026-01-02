@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import { Plus, Minus, ShoppingCart, Heart, Share2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
 interface Product {
@@ -22,12 +23,11 @@ const products = (isTurkish: boolean): Record<string, Product> => ({
 });
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const { addToCart } = useCart();
 
-    // Unwrapping params using React.use() for Next.js 15+ compatibility
     const unwrappedParams = use(params);
     const id = unwrappedParams.id;
 
@@ -49,6 +49,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         setZoomStyle({ transformOrigin: "center", scale: "1" });
     };
 
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        const touch = e.touches[0];
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = ((touch.clientX - left) / width) * 100;
+        const y = ((touch.clientY - top) / height) * 100;
+        setZoomStyle({ transformOrigin: `${x}% ${y}%`, scale: "1.8" });
+    };
+
+    const handleTouchEnd = () => {
+        setZoomStyle({ transformOrigin: "center", scale: "1" });
+    };
+
     const handleAddToCart = () => {
         if (!selectedSize) {
             alert(isTurkish ? "Lütfen bir numara seçin." : "Please select a size.");
@@ -66,8 +78,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     };
 
     return (
-        <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+        <main className="min-h-screen bg-background text-foreground pb-32 sm:pb-0">
+            <Header />
 
             <div className="pt-24 md:pt-32 pb-24 px-6 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* Product Image Section with Zoom */}
@@ -75,9 +87,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative aspect-square bg-muted rounded-2xl overflow-hidden flex items-center justify-center p-8 md:p-12 md:cursor-zoom-in group"
+                    className="relative aspect-square bg-muted rounded-2xl overflow-hidden flex items-center justify-center p-8 md:p-12 md:cursor-zoom-in group touch-none"
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
                     <div
                         className="relative w-full h-full transition-transform duration-200 ease-out pointer-events-none"
@@ -92,7 +106,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         />
                     </div>
 
-                    {/* Zoom Indicator */}
                     <div className="absolute bottom-6 right-6 px-3 py-1.5 bg-background/60 backdrop-blur-md rounded-full border border-border/10 opacity-100 md:group-hover:opacity-0 transition-opacity">
                         <span className="text-[9px] md:text-[10px] text-foreground/60 tracking-widest uppercase flex items-center gap-2">
                             {isTurkish ? "Mercek Etkisi" : "Lens Effect"}
@@ -114,14 +127,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4 uppercase">
                             {product.name}
                         </h1>
-                        <p className="text-2xl md:text-3xl font-display font-medium text-silver">${product.price}</p>
+                        <p className="text-2xl md:text-3xl font-display font-medium text-silver">₺{product.price}</p>
                     </div>
 
                     <p className="text-foreground/60 text-lg leading-relaxed max-w-xl">
                         {product.description}
                     </p>
 
-                    {/* Size Selection */}
                     <div>
                         <span className="text-[10px] uppercase tracking-widest text-foreground/40 mb-4 block">
                             {isTurkish ? "NUMARA SEÇİN" : "SELECT SIZE"}
@@ -133,7 +145,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                                     type="button"
                                     onClick={() => setSelectedSize(size)}
                                     className={`w-14 h-14 flex items-center justify-center border transition-all duration-300 font-display text-sm
-                    ${selectedSize === size ? "bg-foreground text-background border-foreground" : "border-border/10 text-foreground/40 hover:border-foreground/40 hover:text-foreground"}`}
+                                        ${selectedSize === size ? "bg-foreground text-background border-foreground" : "border-border/10 text-foreground/40 hover:border-foreground/40 hover:text-foreground"}`}
                                 >
                                     {size}
                                 </button>
@@ -141,8 +153,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         </div>
                     </div>
 
-                    {/* Quantity and CTA */}
-                    <div className="flex flex-col sm:flex-row gap-6 items-center">
+                    {/* Quantity and CTA - Hidden on Mobile */}
+                    <div className="hidden sm:flex flex-col sm:flex-row gap-6 items-center">
                         <div className="flex items-center border border-border/10 rounded-full h-14 px-4 bg-foreground/5">
                             <button
                                 type="button"
@@ -172,7 +184,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         </button>
                     </div>
 
-                    {/* Actions */}
                     <div className="flex gap-8 pt-4">
                         <button type="button" className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-foreground/40 hover:text-foreground transition-colors">
                             <Heart size={16} />
@@ -184,6 +195,40 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                         </button>
                     </div>
                 </motion.div>
+            </div>
+
+            {/* Mobile Sticky Add to Cart Bar */}
+            <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-2xl border-t border-border/10 p-4 z-[40] lg:hidden">
+                <div className="max-w-md mx-auto flex items-center gap-3">
+                    {/* Mobile Quantity Selector */}
+                    <div className="flex items-center border border-border/10 rounded-xl h-14 px-3 bg-foreground/5 shrink-0">
+                        <button
+                            type="button"
+                            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                            className="text-foreground/40 hover:text-foreground transition-colors"
+                            disabled={quantity <= 1}
+                        >
+                            <Minus size={16} />
+                        </button>
+                        <span className="w-8 text-center text-foreground font-display font-bold text-xs">{quantity}</span>
+                        <button
+                            type="button"
+                            onClick={() => setQuantity(quantity + 1)}
+                            className="text-foreground/40 hover:text-foreground transition-colors"
+                        >
+                            <Plus size={16} />
+                        </button>
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={handleAddToCart}
+                        className="flex-1 bg-foreground text-background h-14 rounded-2xl font-display font-bold tracking-widest text-[10px] uppercase hover:bg-silver transition-all duration-300 flex items-center justify-center gap-3 active:scale-95 shadow-xl shadow-foreground/20"
+                    >
+                        <ShoppingCart size={16} />
+                        {isTurkish ? "SEPETE EKLE" : "ADD TO CART"}
+                    </button>
+                </div>
             </div>
 
             <Footer />

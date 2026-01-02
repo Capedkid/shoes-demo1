@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/ui/ProductCard";
 import { Filter, ChevronDown, X, SlidersHorizontal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const allProducts = (isTurkish: boolean) => [
+export const allProducts = (isTurkish: boolean) => [
     { id: 1, name: isTurkish ? "AeroGlide Fütürist" : "AeroGlide Futurist", category: isTurkish ? "Koşu" : "Running", price: "249", image: "/hero.png" },
     { id: 2, name: isTurkish ? "Urban X-Lüks" : "Urban X-Luxe", category: isTurkish ? "Sokak Modası" : "Streetwear", price: "189", image: "/sneaker-urban.png" },
     { id: 3, name: isTurkish ? "Klasik Maun" : "Classic Mahogany", category: isTurkish ? "Klasik" : "Formal", price: "329", image: "/classic-leather.png" },
@@ -17,7 +18,7 @@ const allProducts = (isTurkish: boolean) => [
 ];
 
 export default function ProductsPage() {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [sortBy, setSortBy] = useState<string>("newest");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -62,7 +63,7 @@ export default function ProductsPage() {
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <div className="pt-24 md:pt-40 pb-20 px-6 max-w-[1440px] mx-auto">
                 {/* Page Header */}

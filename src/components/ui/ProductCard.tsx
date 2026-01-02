@@ -6,6 +6,8 @@ import { Plus, ShoppingBag, Heart } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 interface ProductCardProps {
     id?: number | string;
@@ -18,6 +20,8 @@ interface ProductCardProps {
 
 const ProductCard = ({ id = 1, name, category, price, image, index }: ProductCardProps) => {
     const { addToCart } = useCart();
+    const { isTurkish, t } = useLanguage();
+    const { theme } = useTheme();
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleQuickAdd = (e: React.MouseEvent) => {
@@ -73,7 +77,7 @@ const ProductCard = ({ id = 1, name, category, price, image, index }: ProductCar
                                 e.stopPropagation();
                                 setIsFavorite(!isFavorite);
                             }}
-                            className={`h-10 w-10 md:h-12 md:w-12 rounded-full border border-border/10 flex items-center justify-center transition-all duration-300 backdrop-blur-md ${isFavorite ? 'bg-red-500 border-red-500 text-white' : 'bg-background/20 text-foreground/60 hover:text-foreground hover:bg-background/40'}`}
+                            className={`h-10 w-10 md:h-12 md:w-12 rounded-full border border-border/10 flex items-center justify-center transition-all duration-300 backdrop-blur-md ${isFavorite ? 'bg-red-500 border-red-500 text-white' : 'bg-foreground text-background hover:bg-silver'}`}
                         >
                             <Heart size={18} fill={isFavorite ? "currentColor" : "none"} className={isFavorite ? "scale-110" : ""} />
                         </button>
@@ -107,7 +111,7 @@ const ProductCard = ({ id = 1, name, category, price, image, index }: ProductCar
                             {name}
                         </h3>
                         <p className="text-foreground/40 text-sm mt-1 uppercase tracking-widest text-[10px]">
-                            SINIRLI ÜRETİM
+                            {t("SINIRLI ÜRETİM", "LIMITED EDITION")}
                         </p>
                     </div>
                     <span className="font-display font-bold text-lg">₺{price}</span>

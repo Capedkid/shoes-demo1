@@ -1,20 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 
 export default function AboutPage() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     return (
-        <main className="min-h-screen bg-black">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+        <main className="min-h-screen bg-background">
+            <Header />
 
             <section className="pt-32 md:pt-48 pb-24 px-6">
                 <div className="max-w-[1440px] mx-auto">
@@ -52,22 +48,22 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                             className="flex flex-col gap-8"
                         >
-                            <h2 className="text-3xl font-display font-medium text-white italic">
+                            <h2 className="text-3xl font-display font-medium text-foreground italic">
                                 {isTurkish ? "Geleceği Tasarlıyoruz" : "Designing the Future"}
                             </h2>
-                            <p className="text-white/60 text-lg leading-relaxed font-sans">
+                            <p className="text-foreground/60 text-lg leading-relaxed font-sans">
                                 {isTurkish
                                     ? "2024 yılında kurulan SOLEEDGE, ayakkabı dünyasında teknoloji ve lüksün birleşimini temsil ediyor. Amacımız, her adımda sadece konfor değil, aynı zamanda fütüristik bir kimlik sunmaktır. Mühendislik ekiplerimiz, en hafif materyalleri en dayanıklı yapılarla birleştirerek modern şehir insanının ihtiyaçlarına cevap veriyor."
                                     : "Founded in 2024, SOLEEDGE represents the fusion of technology and luxury in the world of footwear. Our goal is to offer not just comfort in every step, but also a futuristic identity. Our engineering teams combine the lightest materials with the most durable structures to respond to the needs of the modern urbanite."}
                             </p>
                             <div className="grid grid-cols-2 gap-8 pt-8">
                                 <div>
-                                    <span className="text-4xl font-display font-bold text-white block mb-2">2024</span>
-                                    <p className="text-[10px] uppercase tracking-widest text-white/40">{isTurkish ? "KURULUŞ" : "ESTABLISHED"}</p>
+                                    <span className="text-4xl font-display font-bold text-foreground block mb-2">2024</span>
+                                    <p className="text-[10px] uppercase tracking-widest text-foreground/40">{isTurkish ? "KURULUŞ" : "ESTABLISHED"}</p>
                                 </div>
                                 <div>
-                                    <span className="text-4xl font-display font-bold text-white block mb-2">12+</span>
-                                    <p className="text-[10px] uppercase tracking-widest text-white/40">{isTurkish ? "ÜLKE" : "COUNTRIES"}</p>
+                                    <span className="text-4xl font-display font-bold text-foreground block mb-2">12+</span>
+                                    <p className="text-[10px] uppercase tracking-widest text-foreground/40">{isTurkish ? "ÜLKE" : "COUNTRIES"}</p>
                                 </div>
                             </div>
                         </motion.div>

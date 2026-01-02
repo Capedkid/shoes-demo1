@@ -1,21 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 
 export default function TrackingPage() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <section className="pt-48 pb-24 px-6">
                 <div className="max-w-[800px] mx-auto">
@@ -38,13 +34,13 @@ export default function TrackingPage() {
                         <div className="flex flex-col gap-8">
                             <div className="flex flex-col gap-4">
                                 <label className="text-[10px] text-foreground/40 uppercase tracking-widest ml-1">{isTurkish ? "SİPARİŞ NUMARASI" : "ORDER NUMBER"}</label>
-                                <div className="flex gap-4">
+                                <div className="flex flex-col sm:flex-row gap-4">
                                     <input
                                         type="text"
                                         placeholder="e.g. SE-123456"
                                         className="flex-1 bg-foreground/5 border border-border/10 rounded-xl h-14 px-4 text-foreground focus:outline-none focus:border-foreground transition-colors"
                                     />
-                                    <button type="button" className="px-8 h-14 bg-foreground text-background font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 rounded-xl">
+                                    <button type="button" className="w-full sm:w-auto px-8 h-14 bg-foreground text-background font-display font-bold tracking-widest text-xs uppercase hover:bg-silver transition-all duration-300 rounded-xl">
                                         {isTurkish ? "SORGULA" : "TRACK"}
                                     </button>
                                 </div>
