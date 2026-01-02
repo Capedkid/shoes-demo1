@@ -4,11 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, Package, MapPin, LogOut, Settings, CreditCard, Bell, ChevronRight, ShoppingBag, Heart } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 const ProfilePage = () => {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
     const [activeTab, setActiveTab] = useState("orders");
 
     const t = {
@@ -44,7 +45,7 @@ const ProfilePage = () => {
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <div className="pt-32 pb-24 px-6 md:px-12 lg:px-24">
                 <div className="max-w-7xl mx-auto">

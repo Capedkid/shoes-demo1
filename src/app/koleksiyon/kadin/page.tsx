@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/ui/ProductCard";
@@ -13,11 +13,11 @@ const womenProducts = (isTurkish: boolean) => [
 ];
 
 export default function WomenPage() {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <div className="pt-48 pb-24 px-6 max-w-[1440px] mx-auto">
                 <motion.div

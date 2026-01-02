@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 
 export default function VisionPage() {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             {/* Hero Section */}
             <section className="pt-32 md:pt-48 pb-12 md:pb-24 px-6 text-center">

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
@@ -10,11 +11,11 @@ export default function PrivacyPage() {
         window.scrollTo(0, 0);
     }, []);
 
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <section className="pt-48 pb-24 px-6">
                 <div className="max-w-[800px] mx-auto">

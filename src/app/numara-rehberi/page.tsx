@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Ruler, Info, CheckCircle2 } from "lucide-react";
 
 export default function SizeGuidePage() {
-    const [isTurkish, setIsTurkish] = useState(true);
+    const { isTurkish } = useLanguage();
 
     const sizeData = [
         { eu: "40", cm: "25.0", us: "7", uk: "6" },
@@ -20,7 +20,7 @@ export default function SizeGuidePage() {
 
     return (
         <main className="min-h-screen bg-background text-foreground">
-            <Header isTurkish={isTurkish} setIsTurkish={setIsTurkish} />
+            <Header />
 
             <div className="pt-32 pb-24 px-6 max-w-[1000px] mx-auto">
                 <motion.div
